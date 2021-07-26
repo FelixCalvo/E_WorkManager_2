@@ -3,7 +3,6 @@ package com.example.e_workmanager_2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 
 import static com.example.e_workmanager_2.ConnectionServer.connetionServer2;
@@ -21,11 +20,15 @@ public class MainActivity2 extends AppCompatActivity {
 
     public void ConectarServer(View view) {
         //new Hilo1().start();
-        Handler handler = new Handler();
-        handler.post(new Runnable() {
+        runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                connetionServer2();
+                try {
+                    connetionServer2();
+
+                } catch (Exception e) {
+                    System.out.println("Peta en el Run*************************" + e.getMessage());
+                }
             }
         });
     }
